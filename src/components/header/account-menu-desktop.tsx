@@ -49,7 +49,7 @@ export function AccountMenuDesktop() {
               <Skeleton className="h-4 w-48" />
             </div>
           ) : (
-            <span className="text-xs font-normal text-muted-foreground truncate">
+            <span className="truncate text-xs font-normal text-muted-foreground">
               {profile?.email}
             </span>
           )}
