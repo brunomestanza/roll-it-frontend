@@ -39,7 +39,10 @@ type SignUpForm = z.infer<typeof signUpForm>
 
 export function SignUp() {
   const navigate = useNavigate()
-  const form = useForm<SignUpForm>({ resolver: zodResolver(signUpForm) })
+  const form = useForm<SignUpForm>({
+    resolver: zodResolver(signUpForm),
+    defaultValues: { name: '', email: '', password: '' },
+  })
 
   const { mutateAsync: createAccountFn } = useMutation({
     mutationFn: createAccount,

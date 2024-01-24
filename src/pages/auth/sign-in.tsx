@@ -31,6 +31,7 @@ export function SignIn() {
 
   const form = useForm<SignInForm>({
     resolver: zodResolver(signInForm),
+    defaultValues: { email: '', password: '' },
   })
 
   async function handleSignIn(data: SignInForm) {
