@@ -1,4 +1,8 @@
+import { ArrowBigRight } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
@@ -10,6 +14,7 @@ import {
 
 interface CampaignCardProps {
   title: string
+  slug: string
   description: string
   lastSessionDate: string
   playersNames: string[]
@@ -18,11 +23,18 @@ interface CampaignCardProps {
 
 export function CampaignCard({
   title,
+  slug,
   description,
   lastSessionDate,
   playersNames,
   dungeonMaster,
 }: CampaignCardProps) {
+  const navigate = useNavigate()
+
+  function accessCampaign() {
+    navigate(`/campaign/${slug}`)
+  }
+
   return (
     <Card>
       <CardHeader>
@@ -50,8 +62,11 @@ export function CampaignCard({
           <Badge className="w-fit">Violencia explicita</Badge>
         </div>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="flex flex-col gap-4 md:flex-row md:justify-between">
         <p>Última sessão: {lastSessionDate}</p>
+        <Button onClick={accessCampaign}>
+          Acessar campanha <ArrowBigRight />
+        </Button>
       </CardFooter>
     </Card>
   )

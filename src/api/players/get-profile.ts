@@ -3,6 +3,7 @@ import { api } from '@/lib/axios'
 interface Campaign {
   id: string
   dungeonMasterId: string
+  slug: string
   dungeonMasterDisplay: string
   name: string
   createdAt: string
@@ -13,8 +14,7 @@ interface Player {
   id: string
   email: string
   name: string
-  campaignsAsDugeonMaster: Campaign[]
-  campaignsAsPlayer: Campaign[]
+  campaigns: Campaign[]
   createdAt: string
   updatedAt: string | null
 }
