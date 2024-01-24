@@ -1,11 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import { NotFound } from './pages/404'
+import { Campaign } from './pages/app/campaign'
 import { Home } from './pages/app/home'
 import { NewCampaign } from './pages/app/new-campaign'
 import { SignIn } from './pages/auth/sign-in'
 import { SignUp } from './pages/auth/sign-up'
-import { ErrorPage } from './pages/error'
+import { NotFound } from './pages/errors/404'
+import { CampaignNotFound } from './pages/errors/campaign-not-found'
+import { ErrorPage } from './pages/errors/error'
 import { AppLayout } from './pages/layouts/app'
 import { AuthLayout } from './pages/layouts/auth'
 
@@ -17,6 +19,11 @@ export const router = createBrowserRouter([
     children: [
       { path: '/', element: <Home /> },
       { path: '/new-campaign', element: <NewCampaign /> },
+      {
+        path: '/campaign/:slug',
+        element: <Campaign />,
+        errorElement: <CampaignNotFound />,
+      },
     ],
   },
   {

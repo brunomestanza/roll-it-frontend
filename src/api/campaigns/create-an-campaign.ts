@@ -6,15 +6,17 @@ export interface CreateAnCampaignBody {
 }
 
 interface CreateAnCampaignResponse {
-  accessToken: string
+  slug: string
 }
 
 export async function createAnCampaign({
   name,
   dungeonMasterDisplayName,
 }: CreateAnCampaignBody) {
-  await api.post<CreateAnCampaignResponse>('/campaigns', {
+  const response = await api.post<CreateAnCampaignResponse>('/campaigns', {
     name,
     dungeonMasterDisplayName,
   })
+
+  return response.data
 }

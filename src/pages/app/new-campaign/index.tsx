@@ -42,13 +42,13 @@ export function NewCampaign() {
 
   async function handleSignIn(data: CreateNewCampaignForm) {
     try {
-      await createAnCampaignFn({
+      const { slug } = await createAnCampaignFn({
         name: data.name,
         dungeonMasterDisplayName: data.dungeonMasterDisplayName,
       })
 
       toast.success('Campanha criada com sucesso.')
-      // navigate('/')
+      navigate(`/campaign/${slug}`)
     } catch (error) {
       toast.error('Erro ao criar a campanha.')
     }
