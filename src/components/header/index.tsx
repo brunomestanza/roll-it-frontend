@@ -1,9 +1,10 @@
-import { Dices, Home } from 'lucide-react'
+import { Dices } from 'lucide-react'
 
 import { ThemeToggle } from '../theme/theme-toggle'
 import { Separator } from '../ui/separator'
-import { AccountMenu } from './account-menu'
-import { NavLink } from './nav-link'
+import { AccountMenuDesktop } from './account-menu-desktop'
+import { AccountMenuMobile } from './account-menu-mobile'
+import { Navigation } from './navigation'
 
 export function Header() {
   return (
@@ -13,16 +14,18 @@ export function Header() {
 
         <Separator orientation="vertical" className="h-6" />
 
-        <nav className="flex items-center space-x-4 lg:space-x-6">
-          <NavLink to="/">
-            <Home className="h-4 w-4" />
-            Início
-          </NavLink>
-        </nav>
+        <div className="hidden md:block">
+          <Navigation />
+        </div>
 
         <div className="ml-auto flex items-center gap-2">
           <ThemeToggle />
-          <AccountMenu />
+          <div className="hidden md:block">
+            <AccountMenuDesktop />
+          </div>
+          <div className="block md:hidden">
+            <AccountMenuMobile />
+          </div>
         </div>
       </div>
     </div>

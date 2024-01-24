@@ -16,7 +16,7 @@ import {
 } from '../ui/dropdown-menu'
 import { Skeleton } from '../ui/skeleton'
 
-export function AccountMenu() {
+export function AccountMenuDesktop() {
   const navigate = useNavigate()
 
   const { data: profile, isLoading: isLoadingProfile } = useQuery({
