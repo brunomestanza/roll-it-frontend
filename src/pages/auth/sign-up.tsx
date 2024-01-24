@@ -76,11 +76,11 @@ export function SignUp() {
   return (
     <>
       <Helmet title="Cadastro" />
-      <div className="md:p-8 flex flex-col mb-8 md:mb-0">
+      <div className="mb-8 flex flex-col md:mb-0 md:p-8">
         <Button
           variant="ghost"
           asChild
-          className="my-4 md:my-0 md:absolute md:right-8 md:top-8"
+          className="my-4 md:absolute md:right-8 md:top-8 md:my-0"
         >
           <Link to="/sign-in" className="flex gap-2">
             <p>Já possui cadastro?</p>

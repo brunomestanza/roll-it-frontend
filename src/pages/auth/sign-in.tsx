@@ -48,11 +48,11 @@ export function SignIn() {
   return (
     <>
       <Helmet title="Login" />
-      <div className="md:p-8 flex flex-col mb-8 md:mb-0">
+      <div className="mb-8 flex flex-col md:mb-0 md:p-8">
         <Button
           variant="ghost"
           asChild
-          className="my-4 md:my-0 md:absolute md:right-8 md:top-8"
+          className="my-4 md:absolute md:right-8 md:top-8 md:my-0"
         >
           <Link to="/sign-up" className="flex gap-2">
             <p>É novo conosco?</p>
