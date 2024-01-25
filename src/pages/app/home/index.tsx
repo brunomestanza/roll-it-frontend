@@ -1,10 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
-import { formatDistanceToNow } from 'date-fns'
-import { ptBR } from 'date-fns/locale'
 import { BookmarkPlus } from 'lucide-react'
 import { Helmet } from 'react-helmet-async'
 import { useNavigate } from 'react-router-dom'
 
+import { findAllPlayerCampaigns } from '@/api/campaigns/find-all-player-campaigns'
 import { getProfile } from '@/api/players/get-profile'
 import { Button } from '@/components/ui/button'
 
@@ -14,10 +13,15 @@ import { CampaignCardSkeleton } from './campaign-card-skeleton'
 export function Home() {
   const navigate = useNavigate()
 
-  const { data: profile, isLoading: isLoadingProfile } = useQuery({
+  const { data: profile } = useQuery({
     queryKey: ['profile'],
     queryFn: getProfile,
     staleTime: Infinity,
+  })
+
+  const { data: campaigns, isLoading: isLoadingCampaigns } = useQuery({
+    queryKey: ['campaigns'],
+    queryFn: findAllPlayerCampaigns,
   })
 
   function createNewCampaign() {
@@ -33,41 +37,29 @@ export function Home() {
           <Button
             className="w-fit gap-3"
             onClick={createNewCampaign}
-            disabled={isLoadingProfile}
+            disabled={isLoadingCampaigns}
           >
             <BookmarkPlus />
             Criar nova campanha
           </Button>
         </div>
-        {isLoadingProfile ? (
+        {!campaigns ? (
           <>
             <CampaignCardSkeleton />
             <CampaignCardSkeleton />
           </>
         ) : (
           <>
-            {/* {profile?.campaigns.map((campaign) => {
-              const lastSessionDate = formatDistanceToNow(
-                campaign.updatedAt || campaign.createdAt,
-                {
-                  locale: ptBR,
-                  addSuffix: true,
-                },
-              )
-
-              return (
-                <CampaignCard
-                  key={campaign.id}
-                  slug={campaign.slug}
-                  title={campaign.name}
-                  description=""
-                  dungeonMaster={campaign.dungeonMasterDisplay}
-                  playersNames={[]}
-                  lastSessionDate={lastSessionDate}
-                />
-              )
-            })} */}
-            <p>Campanhas carregadas!</p>
+            {profile &&
+              campaigns.map((campaign) => {
+                return (
+                  <CampaignCard
+                    key={campaign.id}
+                    campaign={campaign}
+                    userId={profile.id}
+                  />
+                )
+              })}
           </>
         )}
       </div>

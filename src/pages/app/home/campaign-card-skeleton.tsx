@@ -1,4 +1,3 @@
-import { Badge } from '@/components/ui/badge'
 import {
   Card,
   CardContent,
@@ -38,8 +37,8 @@ export function CampaignCardSkeleton() {
         </div>
         <div className="flex flex-col gap-4">
           <p className="font-bold text-slate-500">Categorias</p>
-          <Badge className="w-fit">Dungeon and Dragons 5e</Badge>
-          <Badge className="w-fit">Violencia explicita</Badge>
+          <Skeleton className="h-[22px] w-[160px]" />
+          <Skeleton className="h-[22px] w-[160px]" />
         </div>
       </CardContent>
       <CardFooter>
