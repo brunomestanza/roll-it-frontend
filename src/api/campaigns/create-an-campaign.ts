@@ -2,7 +2,8 @@ import { api } from '@/lib/axios'
 
 export interface CreateAnCampaignBody {
   name: string
-  dungeonMasterDisplayName: string
+  description?: string
+  tags?: string[]
 }
 
 interface CreateAnCampaignResponse {
@@ -11,11 +12,13 @@ interface CreateAnCampaignResponse {
 
 export async function createAnCampaign({
   name,
-  dungeonMasterDisplayName,
+  description,
+  tags,
 }: CreateAnCampaignBody) {
   const response = await api.post<CreateAnCampaignResponse>('/campaigns', {
     name,
-    dungeonMasterDisplayName,
+    description,
+    tags,
   })
 
   return response.data

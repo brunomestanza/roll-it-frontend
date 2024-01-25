@@ -22,6 +22,8 @@ export function AppLayout() {
 
           if (status === 401) {
             navigate('/sign-in', { replace: true })
+          } else {
+            throw error
           }
         }
       },

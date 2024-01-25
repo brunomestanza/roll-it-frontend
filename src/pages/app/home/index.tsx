@@ -46,7 +46,7 @@ export function Home() {
           </>
         ) : (
           <>
-            {profile?.campaigns.map((campaign) => {
+            {/* {profile?.campaigns.map((campaign) => {
               const lastSessionDate = formatDistanceToNow(
                 campaign.updatedAt || campaign.createdAt,
                 {
@@ -66,7 +66,8 @@ export function Home() {
                   lastSessionDate={lastSessionDate}
                 />
               )
-            })}
+            })} */}
+            <p>Campanhas carregadas!</p>
           </>
         )}
       </div>
