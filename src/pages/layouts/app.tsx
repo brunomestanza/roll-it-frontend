@@ -8,10 +8,8 @@ import { api } from '@/lib/axios'
 export function AppLayout() {
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const accessToken = localStorage.getItem('auth')
-    api.defaults.headers.Authorization = accessToken
-  }, [])
+  const accessToken = localStorage.getItem('auth')
+  api.defaults.headers.Authorization = accessToken
 
   useEffect(() => {
     const interceptorId = api.interceptors.response.use(
