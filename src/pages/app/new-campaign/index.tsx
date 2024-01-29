@@ -55,8 +55,9 @@ export function NewCampaign() {
 
   function handleAddNewTag() {
     if (newTag !== '') {
-      append({ name: newTag })
+      append({ name: newTag }, { shouldFocus: false })
     }
+    setNewTag('')
   }
 
   async function handleSignIn(data: CreateNewCampaignForm) {
@@ -152,6 +153,7 @@ export function NewCampaign() {
                 <div className="flex gap-4">
                   <Input
                     type="text"
+                    value={newTag}
                     placeholder="Sistema de jogo, tópicos abordados e afins são boas pedidas"
                     onChange={(e) => setNewTag(e.target.value)}
                   />

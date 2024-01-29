@@ -11,7 +11,7 @@ interface Player {
 export interface Campaign {
   id: string
   dungeonMasterId: string
-  dungeonMasterName: string
+  dungeonMaster: Player
   tags: string[]
   slug: string
   description: string | null

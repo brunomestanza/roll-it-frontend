@@ -26,7 +26,7 @@ export function CampaignCard({ campaign, userId }: CampaignCardProps) {
     slug,
     name,
     description,
-    dungeonMasterName,
+    dungeonMaster,
     players,
     tags,
     dungeonMasterId,
@@ -55,7 +55,7 @@ export function CampaignCard({ campaign, userId }: CampaignCardProps) {
         <div>
           <p className="font-bold text-slate-500">Mestre</p>
           <p className="font-semibold text-primary">
-            {dungeonMasterName}
+            {dungeonMaster.name}
             {dungeonMasterId === userId && ' (Você)'}
           </p>
         </div>

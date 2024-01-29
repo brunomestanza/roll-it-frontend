@@ -18,7 +18,6 @@ export function Campaign() {
   const { data: campaign, isLoading: isLoadingCampaign } = useQuery({
     queryKey: ['campaign', slug],
     queryFn: () => findCampaignBySlug({ slug }),
-    retry: false,
   })
 
   if (!isLoadingCampaign && !campaign) {
@@ -37,10 +36,16 @@ export function Campaign() {
           ) : (
             <Skeleton className="h-8 w-[280px]" />
           )}
-          {profile && campaign && profile.id === campaign.dungeonMasterId ? (
-            <p>Mestre</p>
+          {!profile || !campaign ? (
+            <p>Loading...</p>
           ) : (
-            <p>Jogador</p>
+            <div>
+              {profile.id === campaign.dungeonMasterId ? (
+                <p>Mestre</p>
+              ) : (
+                <p>Jogador</p>
+              )}
+            </div>
           )}
         </div>
       </div>
