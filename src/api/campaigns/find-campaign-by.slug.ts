@@ -14,8 +14,11 @@ interface Player {
 
 interface Campaign {
   id: string
+  description: string
   dungeonMasterId: string
-  dungeonMasterName: string
+  dungeonMaster: Player
+  tags: string[]
+  slug: string
   name: string
   players: Player[]
   createdAt: Date

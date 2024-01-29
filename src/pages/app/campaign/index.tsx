@@ -6,6 +6,8 @@ import { findCampaignBySlug } from '@/api/campaigns/find-campaign-by.slug'
 import { getProfile } from '@/api/players/get-profile'
 import { Skeleton } from '@/components/ui/skeleton'
 
+import { DungeonMasterDashboard } from './dungeon-master-dashboard'
+
 export function Campaign() {
   const { slug } = useParams()
 
@@ -36,18 +38,18 @@ export function Campaign() {
           ) : (
             <Skeleton className="h-8 w-[280px]" />
           )}
-          {!profile || !campaign ? (
-            <p>Loading...</p>
-          ) : (
-            <div>
-              {profile.id === campaign.dungeonMasterId ? (
-                <p>Mestre</p>
-              ) : (
-                <p>Jogador</p>
-              )}
-            </div>
-          )}
         </div>
+        {!profile || !campaign ? (
+          <p>Loading...</p>
+        ) : (
+          <div>
+            {profile.id === campaign.dungeonMasterId ? (
+              <DungeonMasterDashboard campaign={campaign} />
+            ) : (
+              <p>Jogador</p>
+            )}
+          </div>
+        )}
       </div>
     </>
   )

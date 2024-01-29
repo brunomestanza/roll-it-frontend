@@ -6,7 +6,7 @@ export interface CreateAccountBody {
   password: string
 }
 
-interface CreateACcountResponse {
+interface CreateAccountResponse {
   accessToken: string
 }
 
@@ -15,7 +15,7 @@ export async function createAccount({
   email,
   password,
 }: CreateAccountBody) {
-  const response = await api.post<CreateACcountResponse>('/players', {
+  const response = await api.post<CreateAccountResponse>('/players', {
     name,
     email,
     password,

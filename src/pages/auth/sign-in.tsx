@@ -27,7 +27,7 @@ type SignInForm = z.infer<typeof signInForm>
 
 export function SignIn() {
   const navigate = useNavigate()
-  const { mutateAsync: authenticate } = useMutation({ mutationFn: signIn })
+  const { mutateAsync: signInFn } = useMutation({ mutationFn: signIn })
 
   const form = useForm<SignInForm>({
     resolver: zodResolver(signInForm),
@@ -36,7 +36,7 @@ export function SignIn() {
 
   async function handleSignIn(data: SignInForm) {
     try {
-      await authenticate({ email: data.email, password: data.password })
+      await signInFn({ email: data.email, password: data.password })
 
       toast.success('Jogador autenticado com sucesso.')
       navigate('/')
