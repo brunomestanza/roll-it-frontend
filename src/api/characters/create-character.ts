@@ -8,14 +8,6 @@ export interface CreateAnCampaignBody {
   lifePoints: number
 }
 
-// name: z.string().min(6, 'Nome deve ter no mínimo 6 caracteres.'),
-//   campaignId: z.string().uuid(),
-//   difficultToHit: z
-//     .number()
-//     .min(1, 'Dificuldade de acerto deve ser no mínimo 1'),
-//   initiativeBonus: z.number(),
-//   lifePoints: z.number(),
-
 export async function createCharacter({
   name,
   campaignId,
