@@ -7,6 +7,7 @@ import { getProfile } from '@/api/players/get-profile'
 import { Skeleton } from '@/components/ui/skeleton'
 
 import { DungeonMasterDashboard } from './dungeon-master-dashboard'
+import { PlayerDashboard } from './player-dashboard'
 
 export function Campaign() {
   const { slug } = useParams()
@@ -46,7 +47,7 @@ export function Campaign() {
             {profile.id === campaign.dungeonMasterId ? (
               <DungeonMasterDashboard campaign={campaign} />
             ) : (
-              <p>Jogador</p>
+              <PlayerDashboard campaign={campaign} />
             )}
           </div>
         )}
