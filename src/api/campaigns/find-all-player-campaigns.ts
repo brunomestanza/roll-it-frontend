@@ -4,8 +4,8 @@ interface Player {
   id: string
   email: string
   name: string
-  createdAt: Date
-  updatedAt: Date | null
+  createdAt: string
+  updatedAt: string | null
 }
 
 export interface Campaign {
@@ -17,8 +17,8 @@ export interface Campaign {
   description: string | null
   name: string
   players: Player[]
-  createdAt: Date
-  updatedAt: Date
+  createdAt: string
+  updatedAt: string | null
 }
 
 interface FindAllPlayerCampaignsResponse {
@@ -27,6 +27,8 @@ interface FindAllPlayerCampaignsResponse {
 
 export async function findAllPlayerCampaigns() {
   const response = await api.get<FindAllPlayerCampaignsResponse>('my-campaigns')
+
+  console.log(response.data.campaigns)
 
   return response.data.campaigns
 }

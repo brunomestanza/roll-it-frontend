@@ -8,8 +8,8 @@ interface Player {
   id: string
   email: string
   name: string
-  createdAt: Date
-  updatedAt: Date | null
+  createdAt: string
+  updatedAt: string | null
 }
 
 interface Campaign {
@@ -21,8 +21,8 @@ interface Campaign {
   slug: string
   name: string
   players: Player[]
-  createdAt: Date
-  updatedAt: Date
+  createdAt: string
+  updatedAt: string | null
 }
 
 interface FindCampaignBySlugResponse {
