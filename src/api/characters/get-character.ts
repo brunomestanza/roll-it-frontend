@@ -16,7 +16,7 @@ interface Character {
   updatedAt?: string | null
 }
 
-interface GetCharacterResponse {
+export interface GetCharacterResponse {
   character: Character
 }
 

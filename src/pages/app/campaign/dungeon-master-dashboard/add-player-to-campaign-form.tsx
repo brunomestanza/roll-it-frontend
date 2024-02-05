@@ -48,7 +48,6 @@ export function AddPlayerToCampaignForm({
 
       toast.success('Jogador adicionado com sucesso.')
     } catch (error) {
-      console.log(error)
       const formattedError = showError({
         error,
         genericErrorMessage: 'Erro ao adicionar jogador',

@@ -1,6 +1,6 @@
 import { api } from '@/lib/axios'
 
-export interface CreateAnCampaignBody {
+export interface CreateCharacterBody {
   name: string
   campaignId: string
   difficultToHit: number
@@ -14,8 +14,7 @@ export async function createCharacter({
   difficultToHit,
   initiativeBonus,
   lifePoints,
-}: CreateAnCampaignBody) {
-  console.log(name, campaignId, difficultToHit, initiativeBonus, lifePoints)
+}: CreateCharacterBody) {
   await api.post('/characters', {
     name,
     campaignId,

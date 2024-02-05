@@ -5,7 +5,7 @@ export interface SignInBody {
   password: string
 }
 
-interface SignInResponse {
+export interface SignInResponse {
   accessToken: string
 }
 
@@ -14,6 +14,7 @@ export async function signIn({ email, password }: SignInBody) {
     email,
     password,
   })
+
   const accessToken = `Bearer ${response.data.accessToken}`
 
   localStorage.setItem('auth', accessToken)

@@ -11,31 +11,37 @@ interface ShowErrorProps {
   genericErrorMessage: string
 }
 
-// The backend can return errors in two ways
-export function showError({ error, genericErrorMessage }: ShowErrorProps) {
-  // An error message with the field where the error occour
-  if (error instanceof AxiosError && error.response?.data.message) {
-    const field = error.response.data.field
-    const message = error.response.data.message
+// This function can recieve an error in the following ways:
+// 1 -> An object with the error message, and an form field when this occur
+// 2 -> An array of objects, each one with the error message and the form field
+// 3 -> Null, send in e2e tests for the genericErrorMessage errors
 
-    if (field) {
-      return { field, message }
-    } else {
-      toast.error(message)
-    }
-  } else if (error instanceof AxiosError && error.response?.data.errors) {
-    // An array of error messages with the field where the error occour
-    error.response?.data.errors.forEach((apiError: ApiError) => {
-      const field = apiError.field
-      const message = apiError.message
+export function showError({ error, genericErrorMessage }: ShowErrorProps) {
+  try {
+    if (error instanceof AxiosError && error.response?.data.message) {
+      const field = error.response.data.field
+      const message = error.response.data.message
 
       if (field) {
         return { field, message }
       } else {
         toast.error(message)
       }
-    })
-  } else {
+    } else if (error instanceof AxiosError && error.response?.data.errors) {
+      error.response?.data.errors.forEach((apiError: ApiError) => {
+        const field = apiError.field
+        const message = apiError.message
+
+        if (field) {
+          return { field, message }
+        } else {
+          toast.error(message)
+        }
+      })
+    } else {
+      toast.error(genericErrorMessage)
+    }
+  } catch (error) {
     toast.error(genericErrorMessage)
   }
 

@@ -8,7 +8,7 @@ interface Player {
   updatedAt: string | null
 }
 
-interface GetProfileResponse {
+export interface GetProfileResponse {
   player: Player
 }
 

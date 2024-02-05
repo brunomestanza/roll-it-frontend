@@ -21,14 +21,12 @@ export interface Campaign {
   updatedAt: string | null
 }
 
-interface FindAllPlayerCampaignsResponse {
+export interface FindAllPlayerCampaignsResponse {
   campaigns: Campaign[]
 }
 
 export async function findAllPlayerCampaigns() {
   const response = await api.get<FindAllPlayerCampaignsResponse>('my-campaigns')
-
-  console.log(response.data.campaigns)
 
   return response.data.campaigns
 }

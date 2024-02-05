@@ -6,7 +6,7 @@ export interface CreateAnCampaignBody {
   tags?: string[]
 }
 
-interface CreateAnCampaignResponse {
+export interface CreateAnCampaignResponse {
   slug: string
 }
 

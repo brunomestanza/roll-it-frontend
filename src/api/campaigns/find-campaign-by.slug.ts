@@ -25,7 +25,7 @@ interface Campaign {
   updatedAt: string | null
 }
 
-interface FindCampaignBySlugResponse {
+export interface FindCampaignBySlugResponse {
   campaign: Campaign
 }
 

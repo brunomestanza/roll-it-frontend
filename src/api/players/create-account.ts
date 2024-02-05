@@ -6,7 +6,7 @@ export interface CreateAccountBody {
   password: string
 }
 
-interface CreateAccountResponse {
+export interface CreateAccountResponse {
   accessToken: string
 }
 
