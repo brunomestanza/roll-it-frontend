@@ -61,7 +61,7 @@ export function SignUp() {
     } catch (error) {
       const formattedError = showError({
         error,
-        genericErrorMessage: 'Erro ao cadastrar jogador',
+        genericErrorMessage: 'Erro ao cadastrar jogador.',
       })
 
       if (formattedError) {
