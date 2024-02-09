@@ -9,6 +9,7 @@ test('sign in successfully', async ({ page }) => {
 
   await page.waitForURL('/')
 
+  await page.getByText('Jogador autenticado com sucesso.').waitFor()
   const toast = page.getByText('Jogador autenticado com sucesso.')
   const url = page.url().endsWith('/')
 
