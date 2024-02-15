@@ -10,10 +10,11 @@ test('sign in successfully', async ({ page }) => {
   await page.waitForURL('/')
 
   await page.getByText('Jogador autenticado com sucesso.').waitFor()
-  const toast = page.getByText('Jogador autenticado com sucesso.')
   const url = page.url().endsWith('/')
 
-  expect(toast).toBeVisible()
+  await expect(
+    page.getByText('Jogador autenticado com sucesso.', { exact: true }),
+  ).toHaveCount(1)
   expect(url).toBeTruthy()
 })
 
@@ -24,9 +25,9 @@ test('sign in with wrong credentials', async ({ page }) => {
   await page.getByLabel('Sua senha').fill('onlyfortests')
   await page.getByRole('button', { name: 'Entrar' }).click()
 
-  const toast = page.getByText('Credenciais inválidas.')
-
-  expect(toast).toBeVisible()
+  await expect(
+    page.getByText('Credenciais inválidas.', { exact: true }),
+  ).toHaveCount(1)
 })
 
 test('navigate to new account page', async ({ page }) => {

@@ -75,7 +75,7 @@ export function NewCampaign() {
     } catch (error) {
       const formattedError = showError({
         error,
-        genericErrorMessage: 'Erro ao criar a campanha',
+        genericErrorMessage: 'Erro ao criar a campanha.',
       })
 
       if (formattedError) {

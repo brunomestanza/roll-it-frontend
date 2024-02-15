@@ -16,5 +16,5 @@ export const createAnCampaignMock = http.post<
     return HttpResponse.json({ slug: 'john-doe-test-campaign' })
   }
 
-  return HttpResponse.json(null, { status: 401 })
+  return HttpResponse.json(null, { status: 400 })
 })

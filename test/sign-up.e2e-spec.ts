@@ -9,9 +9,9 @@ test('sign up successfully', async ({ page }) => {
 
   await page.getByRole('button', { name: 'Finalizar cadastro' }).click()
 
-  const toast = page.getByText('Jogador cadastrado com sucesso.')
-
-  expect(toast).toBeVisible()
+  await expect(
+    page.getByText('Jogador cadastrado com sucesso.', { exact: true }),
+  ).toHaveCount(1)
 })
 
 test('sign up with error', async ({ page }) => {
@@ -23,9 +23,9 @@ test('sign up with error', async ({ page }) => {
 
   await page.getByRole('button', { name: 'Finalizar cadastro' }).click()
 
-  const toast = page.getByText('Erro ao cadastrar jogador.')
-
-  expect(toast).toBeVisible()
+  await expect(
+    page.getByText('Erro ao cadastrar jogador.', { exact: true }),
+  ).toHaveCount(1)
 })
 
 test('navigate to login page', async ({ page }) => {
