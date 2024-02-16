@@ -41,5 +41,9 @@ test('should be able to access the campaign as player', async ({ page }) => {
 
   await page.waitForURL('/campaign/player-jones-campaign-2-name')
 
-  await expect(page.getByText('Alguma coisa')).toHaveCount(1)
+  await expect(
+    page.getByText(
+      'Abaixo você encontra todas as informações sobre o seu personagem.',
+    ),
+  ).toHaveCount(1)
 })
