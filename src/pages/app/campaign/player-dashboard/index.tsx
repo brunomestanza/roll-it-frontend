@@ -1,10 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
-import { Heart, Pencil, Shield } from 'lucide-react'
+import { Heart, Shield } from 'lucide-react'
 
 import { Campaign } from '@/api/campaigns/find-all-player-campaigns'
 import { getCharacter } from '@/api/characters/get-character'
 import { Spinner } from '@/components/spinner'
-import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
@@ -15,6 +14,7 @@ import {
 } from '@/components/ui/card'
 
 import { CreateCharacterForm } from './create-character-form'
+import { EditCharacterForm } from './edit-character-form'
 
 interface PlayerDashboardProps {
   campaign: Campaign
@@ -25,6 +25,7 @@ export function PlayerDashboard({ campaign }: PlayerDashboardProps) {
   const { data: character, isLoading: isLoadingCharacter } = useQuery({
     queryKey: ['character', campaignId],
     queryFn: () => getCharacter({ campaignId }),
+    refetchOnWindowFocus: false,
   })
 
   if (isLoadingCharacter) {
@@ -46,19 +47,33 @@ export function PlayerDashboard({ campaign }: PlayerDashboardProps) {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
-            <span className="flex items-center gap-4">
-              <Shield />
-              <p>14</p>
-            </span>
-            <span className="flex items-center gap-4">
-              <Heart />
-              <p>10/10</p>
-            </span>
+            <div className="flex flex-col gap-4">
+              <span className="text-sm">Dificuldade de acerto</span>
+              <span className="flex items-center gap-4">
+                <Shield />
+                <p>{character.difficultToHit}</p>
+              </span>
+            </div>
+            <div className="flex flex-col gap-4">
+              <span className="text-sm">Vida máxima e atual</span>
+              <span className="flex items-center gap-4">
+                <Heart />
+                <p>
+                  {character.actualLifePoints}/{character.maxLifePoints}
+                </p>
+              </span>
+            </div>
           </CardContent>
           <CardFooter>
-            <Button variant="default" className="flex items-center gap-2">
-              Editar <Pencil className="h-4 w-4" />
-            </Button>
+            <EditCharacterForm
+              name={character.name}
+              actualLifePoints={character.actualLifePoints}
+              maxLifePoints={character.maxLifePoints}
+              difficultToHit={character.difficultToHit}
+              initiativeBonus={character.initiativeBonus}
+              campaignId={campaign.id}
+              characterId={character.id}
+            />
           </CardFooter>
         </Card>
       ) : (

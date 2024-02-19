@@ -30,7 +30,7 @@ const createCharacterSchema = z.object({
   lifePoints: z.number(),
 })
 
-type AddPlayerToCampaignForm = z.infer<typeof createCharacterSchema>
+type CreateCharacterForm = z.infer<typeof createCharacterSchema>
 
 export function CreateCharacterForm({ campaignId }: CreateCharacterFormProps) {
   const queryClient = useQueryClient()
@@ -41,22 +41,17 @@ export function CreateCharacterForm({ campaignId }: CreateCharacterFormProps) {
       { campaignId, difficultToHit, initiativeBonus, lifePoints, name },
     ) {
       // TODO: Type cache
-      const cached = queryClient.getQueryData(['player-character'])
-
-      if (cached) {
-        queryClient.setQueryData(['player-character'], {
-          ...cached,
-          campaignId,
-          difficultToHit,
-          initiativeBonus,
-          lifePoints,
-          name,
-        })
-      }
+      queryClient.setQueryData(['character', campaignId], {
+        campaignId,
+        difficultToHit,
+        initiativeBonus,
+        lifePoints,
+        name,
+      })
     },
   })
 
-  const form = useForm<AddPlayerToCampaignForm>({
+  const form = useForm<CreateCharacterForm>({
     resolver: zodResolver(createCharacterSchema),
     defaultValues: {
       difficultToHit: 10,
@@ -66,7 +61,7 @@ export function CreateCharacterForm({ campaignId }: CreateCharacterFormProps) {
     },
   })
 
-  async function handleCreateCharacter(data: AddPlayerToCampaignForm) {
+  async function handleCreateCharacter(data: CreateCharacterForm) {
     try {
       await createCharacterFn({
         campaignId,

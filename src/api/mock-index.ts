@@ -7,6 +7,7 @@ import { createAnCampaignMock } from './campaigns/mocks/create-an-campaign-mock'
 import { findAllPlayerCampaignsMock } from './campaigns/mocks/find-all-player-campaigns-mock'
 import { findCampaignBySlugMock } from './campaigns/mocks/find-campaign-by-slug-mock'
 import { createCharacterMock } from './characters/mocks/create-character-mock'
+import { editCharacterMock } from './characters/mocks/edit-character-mock'
 import { getCharacterMock } from './characters/mocks/get-character-mock'
 import { addPlayerToCampaignMock } from './players/mocks/add-player-to-campaign'
 import { createAccountMock } from './players/mocks/create-account-mock'
@@ -22,6 +23,7 @@ export const worker = setupWorker(
   getCharacterMock,
   addPlayerToCampaignMock,
   createAccountMock,
+  editCharacterMock,
 )
 
 const ignoredRequestsEndPath = ['.png', '.ico']

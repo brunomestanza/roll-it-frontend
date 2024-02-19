@@ -9,7 +9,8 @@ interface Character {
   name: string
   playerId: string
   campaignId: string
-  lifePoints: number
+  actualLifePoints: number
+  maxLifePoints: number
   difficultToHit: number
   initiativeBonus: number
   createdAt: string
