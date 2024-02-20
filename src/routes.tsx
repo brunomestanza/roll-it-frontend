@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import { Campaign } from './pages/app/campaign'
 import { Home } from './pages/app/home'
 import { NewCampaign } from './pages/app/new-campaign'
+import { Npcs } from './pages/app/npcs'
 import { SignIn } from './pages/auth/sign-in'
 import { SignUp } from './pages/auth/sign-up'
 import { NotFound } from './pages/errors/404'
@@ -19,6 +20,7 @@ export const router = createBrowserRouter([
     children: [
       { path: '/', element: <Home /> },
       { path: '/new-campaign', element: <NewCampaign /> },
+      { path: '/npcs/:campaignId', element: <Npcs /> },
       {
         path: '/campaign/:slug',
         element: <Campaign />,
