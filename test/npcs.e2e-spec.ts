@@ -37,3 +37,12 @@ test('should show error message when creating an npc', async ({ page }) => {
     page.getByText('Erro ao criar NPC.', { exact: true }),
   ).toHaveCount(1)
 })
+
+test('should load npcs', async ({ page }) => {
+  await page.goto('/npcs/campaign-1-id', {
+    waitUntil: 'networkidle',
+  })
+
+  await expect(page.getByRole('heading', { name: 'NPC 1' })).toHaveCount(1)
+  await expect(page.getByRole('heading', { name: 'NPC 2' })).toHaveCount(1)
+})

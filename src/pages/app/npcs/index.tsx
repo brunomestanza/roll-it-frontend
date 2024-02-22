@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
@@ -7,6 +7,7 @@ import { toast } from 'sonner'
 import { z } from 'zod'
 
 import { createNpc } from '@/api/npcs/create-npc'
+import { findAllCampaignNPCs } from '@/api/npcs/find-all-campaign-npcs'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -18,6 +19,8 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { showError } from '@/utils/show-error'
+
+import { NPCCard } from './npc-card'
 
 const createNpcSchema = z.object({
   name: z.string().min(6, 'Nome deve ter no mínimo 6 caracteres.'),
@@ -32,7 +35,11 @@ type CreateNpcForm = z.infer<typeof createNpcSchema>
 
 export function Npcs() {
   const { campaignId } = useParams()
-  // const queryClient = useQueryClient()
+  const { data: npcs } = useQuery({
+    queryKey: ['npcs', campaignId],
+    queryFn: () => findAllCampaignNPCs({ campaignId }),
+    staleTime: Infinity,
+  })
   const { mutateAsync: createNpcFn } = useMutation({
     mutationFn: createNpc,
   })
@@ -175,6 +182,9 @@ export function Npcs() {
             </Button>
           </form>
         </Form>
+        <div>
+          {npcs && npcs.map((npc) => <NPCCard key={npc.id} npc={npc} />)}
+        </div>
       </div>
     </>
   )
